@@ -156,3 +156,11 @@ Projeyi beğendiyseniz ve destek olmak isterseniz, bir kahve ısmarlayabilirsini
 
 [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/cenktekin)
 
+## 🔒 Maintenance Notes
+
+- **Security Cleanup**: Hassas dosyalar (.env.local, metadata.json) archive/ dizinine taşındı
+- **Gitignore Update**: Archive dizini, log dosyaları ve temp dosyalar .gitignore'a eklendi
+- **Security Audit**: Kod tabanında hassas bilgi taraması yapıldı, API key'ler environment variables ile yönetiliyor
+- **Initial Commit**: chore(repo): initial commit with cleanup and security fixes
+- **Push Status**: Main branch'e başarıyla push edildi, origin main tracking set edildi
+
