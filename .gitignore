@@ -26,3 +26,8 @@ dist-ssr
 # Archive and temp files
 archive/
 *.tmp
+
+# Environment variables
+.env
+.env.local
+.env.*.local
