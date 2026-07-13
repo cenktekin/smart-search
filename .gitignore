@@ -31,3 +31,8 @@ archive/
 .env
 .env.local
 .env.*.local
+
+# Project template files (auto-generated)
+* - Genel Bakış.md
+* - Günlük Notlar.md
+* - Geliştirme Fikirleri.md
