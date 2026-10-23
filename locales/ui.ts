@@ -25,6 +25,8 @@ export type UiStrings = {
   generating: string;
   aiErrorTitle: string;
   aiErrorBody: string;
+  aiTimeoutError: string;
+  apiKeyMissing: string;
   selectAIModel: string;
 };
 
@@ -58,6 +60,8 @@ export const UI_STRINGS_EN: UiStrings = {
   generating: "Generating...",
   aiErrorTitle: "AI Generation Failed",
   aiErrorBody: "The AI could not generate a query. Please try again or rephrase your request.",
+  aiTimeoutError: "The request timed out after 30 seconds. Try a shorter request or a faster model.",
+  apiKeyMissing: "No OpenRouter API key configured. Copy .env.example to .env.local, add VITE_OPENROUTER_API_KEY and restart the dev server.",
   selectAIModel: "Select AI Model",
 };
 
@@ -87,5 +91,7 @@ export const UI_STRINGS_TR: UiStrings = {
   generating: "Oluşturuluyor...",
   aiErrorTitle: "Yapay Zeka Hatası",
   aiErrorBody: "Yapay zeka bir sorgu oluşturamadı. Lütfen tekrar deneyin veya isteğinizi farklı bir şekilde ifade edin.",
+  aiTimeoutError: "İstek 30 saniye içinde tamamlanamadı. Daha kısa bir istek veya daha hızlı bir model deneyin.",
+  apiKeyMissing: "OpenRouter API anahtarı tanımlı değil. .env.example dosyasını .env.local olarak kopyalayın, VITE_OPENROUTER_API_KEY ekleyin ve dev sunucusunu yeniden başlatın.",
   selectAIModel: "Yapay Zeka Modeli Seç",
 };

@@ -6,7 +6,7 @@ interface AIQueryGeneratorProps {
   onGenerate: (prompt: string) => void;
   isGenerating: boolean;
   error: string | null;
-  availableModels: any[];
+  availableModels: { id: string }[];
   selectedModel: string;
   onSelectModel: (modelId: string) => void;
 }
