@@ -1,52 +1,51 @@
-# Smart Search Operator Page - Tasks.md
+# Tasks — Smart Search Operator Page
 
-## Proje Genel Durumu
-- **Proje Adı**: Smart Search Operator Page
-- **Teknoloji Yığını**: React + Vite + TypeScript
-- **Geliştirme Aşaması**: %50 tamamlanmış
-- **Ana Özellikler**: AI sorgu oluşturma, kategori filtreleme, localization (EN/TR), OpenRouter entegrasyonu
-- **Bilinen Sorunlar**: Dev server SIGINT hatası, filetype infer etmeme (prompt/model sorunu), Gemini dead code
-- **Bağımlılıklar**: OpenRouter API key, Node.js/Vite güncel
-- **Son Güncelleme**: 2025-09-06
+Son güncelleme: 2026-10-23
 
-## Öncelik Kategorileri
-- **P0 (Critical - Blocker)**: Geliştirmeyi engelleyen acil sorunlar
-- **P1 (High)**: Fonksiyonaliteyi iyileştiren önemli sorunlar
-- **P2 (Medium)**: Kalite ve dokümantasyonu artıran görevler
-- **P3 (Low)**: Ekstra özellikler ve optimizasyonlar
+## Durum
 
-## Görevler (Checklist Formatı)
-### Backlog (Planlanan)
-- [ ] P3: RTL desteği ekle (Tahmini süre: 4 saat, Owner: Frontend Developer)
-- [ ] P3: Accessibility iyileştirmeleri yap (ARIA attributes, screen reader uyumu) (Tahmini süre: 6 saat, Owner: Accessibility Specialist)
-- [ ] P2: Unit ve integration testleri yaz (Jest ile %80 coverage) (Tahmini süre: 8 saat, Owner: Test Engineer)
-- [ ] P2: Dokümantasyon güncelle (README genişlet, API docs ekle) (Tahmini süre: 3 saat, Owner: Documentation Writer)
+- **Aşama:** Çalışır durumda; AI akışı, varlıklar ve dokümanlar hizalandı
+- **Stack:** React 19 + TypeScript 5.8 + Vite 6, Tailwind (CDN), OpenRouter
+- **Kapılar:** `npm run typecheck` ✅ · `npm run build` ✅ (224,8 kB / 69,6 kB gzip)
 
-### In Progress (Devam Eden)
-- [-] P0: Dev server'ı düzelt (SIGINT issue fix, vite dev komutu stabil hale getir) (Progress: %0, Tahmini süre: 2 saat, Owner: DevOps, Blocker: Runtime sorunu)
-- [-] P1: Gemini dead code'u temizle (Kaldır veya refactor) (Progress: %0, Tahmini süre: 1 saat, Owner: Code)
-- [-] P2: Localization polish (RTL dahil, ekstra diller ekle) (Progress: %100, Tahmini süre: 2 saat, Owner: Frontend Developer)
+## Tamamlanan
 
-### Done (Tamamlanan)
-- [x] Core logic geliştir (Query management, localStorage) (Tamamlanma: 2025-09-05)
-- [x] Localization setup (EN/TR, no missing keys) (Tamamlanma: 2025-09-05)
-- [x] UX responsive hale getir (Tailwind ile) (Tamamlanma: 2025-09-05)
-- [x] OpenRouter entegrasyonu temel (Fetch calls, error handling) (Tamamlanma: 2025-09-05)
-- [x] P1: OpenRouter entegrasyonuna timeout ve retry mekanizması ekle (Progress: %100, Tahmini süre: 3 saat, Owner: Code, Tamamlanma: 2025-09-06)
+- [x] AI isteği/yanıt şeması uyumu (`response_format: json_object` ↔ `{"parts":[...]}`)
+- [x] Sistem talimatının operatör kataloğundan üretilmesi (`filetype`, `inurl`, `related`, `cache`, `define`)
+- [x] Debug log temizliği, ölü Gemini/importmap config'i, boş `constants.ts`
+- [x] Eksik varlıklar: `index.css`, `public/favicon.svg`
+- [x] `?q=` ile paylaşılabilir bağlantı
+- [x] Paket yöneticisi tekilleştirme (npm), `.gitattributes`, `.env.example`, `LICENSE`
+- [x] `App.tsx` 579 → 316 satır (`hooks/` + `lib/` ayrımı)
+- [x] README ve `docs/` gerçek davranışa göre yeniden yazıldı
+- [x] Footer'daki hatalı repo bağlantısı düzeltildi (`cenktekin/smart-search`)
+- [x] `npm run typecheck` script'i ve `vite/client` tipleri
 
-## Milestone'lar ve Teslimatlar
-- **Milestone 1: Core Setup** (Tamamlandı, %100)
-- **Milestone 2: Integration & Fixes** (Tamamlandı, %100)
-- **Milestone 3: Testing & Polish** (Backlog, %0)
-- **Timeline**: Milestone 2 - 1 hafta, Milestone 3 - 2 hafta
+## Sıradaki işler
 
-## Blockers ve Dependencies
-- **Blockers**: Dev server broken (P0 task engelliyor)
-- **Prerequisites**: OpenRouter API key ayarlanmalı
-- **Dependencies**: P0 tamamlanmadan testler yapılamaz
+### P1 — Test ve CI
 
-## Önerilen Sonraki Eylem
-- **Task**: P1 - Gemini dead code'u temizle veya P2 - Unit ve integration testleri yaz
-- **Rationale**: P1 dead code temizliği yüksek öncelikli, P2 testler kaliteyi artırır
-- **Tahmini Süre**: 1-8 saat
-- **Quick Start Steps**: 1. Gemini ile ilgili kodları incele, 2. Kaldır veya refactor et, 3. Test et veya Jest setup'ı yap
+- [ ] Vitest kurulumu; ağ çağrısı olmayan birim testleri: `buildSearchQuery`, `parseAIResponse`, `buildSystemInstruction`, `readSharedQuery`
+- [ ] GitHub Actions: `npm ci --include=dev` → `typecheck` → `build` → `test`
+
+### P1 — Tip güvenliği
+
+- [ ] `tsconfig` içinde `strict: true`, kalan `any` kullanımlarını temizle
+- [ ] `build` öncesi `tsc --noEmit` (şimdilik ayrı script)
+
+### P2 — Üretim dayanıklılığı
+
+- [ ] Tailwind CDN → derlenmiş CSS (offline/üretim kırılganlığı)
+- [ ] İstemci anahtarı için sunucu tarafı proxy (şu an anahtar pakette görünür)
+
+### P3 — Özellik
+
+- [ ] Sorgu geçmişi (localStorage + geçmiş paneli)
+- [ ] AI ile mevcut sorguyu iyileştirme önerisi
+- [ ] `manifestos.ts` yalnız 2 şablon içeriyor; genişletme değerlendirmesi
+
+## Bilinen sınırlar
+
+- API anahtarı istemci paketine gömülür; yalnız kişisel/yerel kullanım için uygun
+- Otomatik test ve CI yok
+- `docs/` ve `README` dışında sürüm/changelog takibi yok
